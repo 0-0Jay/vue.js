@@ -23,5 +23,6 @@ const newObj = {
 };
 // hong.value = newObj;
 // kang = newObj;
+// reactive는 객체 교체 불가능 -> 교체할 경우 반응형이 아니게 됨.
 </script>
 <template></template>
