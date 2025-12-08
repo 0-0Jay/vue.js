@@ -9,23 +9,20 @@
     />
     <span v-on:click="newElement" class="addBtn">Add</span>
   </div>
-
+  <!-- 헤더 리스트로 나누고 헤더의 입력값을 emit해서 루트에 옮긴뒤에 리스트에 bind하는 방법 -->
   <ul id="myUL">
-    <li
-      v-for="(item, idx) in data"
+    <TaskInfo
+      v-for="item in data"
       v-bind:key="item.no"
-      v-bind:class="{ checked: item.complete }"
-      v-on:click="checked(item)"
-    >
-      <!-- 같은 이유? -->
-      {{ item.task }}
-      <span v-on:click="delElement(idx)" class="close">×</span>
-      <!-- 인덱스를 직접 전달하는 것보다는 찾는 것이 좀더 명확함 -->
-    </li>
+      v-bind:item="item"
+      v-on:taskChecked="checked"
+      v-on:delTask="delElement"
+    />
   </ul>
 </template>
 <script setup>
 import { ref, reactive } from "vue";
+import TaskInfo from "@/components/TaskInfo.vue";
 
 const data = reactive([
   { no: 1, task: "Hit the gym", complete: false },
@@ -47,12 +44,17 @@ const newElement = () => {
   inputData.value = "";
 };
 
-const delElement = (idx) => {
+const delElement = (selectedNo) => {
+  let idx = data.findIndex((todo) => todo.no == selectedNo);
   data.splice(idx, 1);
 };
 
-const checked = (item) => {
-  item.complete = !item.complete;
+const checked = (selectedNo) => {
+  data.forEach((todo) => {
+    if (todo.no == selectedNo) {
+      item.complete = !item.complete;
+    }
+  });
 };
 </script>
 <style scope>
