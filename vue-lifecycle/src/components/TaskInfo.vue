@@ -6,7 +6,7 @@ const props = defineProps({
 
 const emit = defineEmits(["taskChecked", "delTask"]);
 const checked = () => {
-  emit("taskchecked", props.item.no);
+  emit("taskChecked", props.item.no);
 };
 
 const delElement = () => {

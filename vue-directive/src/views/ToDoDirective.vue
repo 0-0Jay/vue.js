@@ -9,7 +9,7 @@
     />
     <span v-on:click="newElement" class="addBtn">Add</span>
   </div>
-
+  <!-- 헤더 리스트로 나누고 헤더의 입력값을 emit해서 루트에 옮긴뒤에 리스트에 bind하는 방법 -->
   <ul id="myUL">
     <li
       v-for="(item, idx) in data"

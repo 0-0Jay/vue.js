@@ -52,7 +52,7 @@ const delElement = (selectedNo) => {
 const checked = (selectedNo) => {
   data.forEach((todo) => {
     if (todo.no == selectedNo) {
-      item.complete = !item.complete;
+      todo.complete = !todo.complete;
     }
   });
 };
